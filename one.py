@@ -1,2 +1,4 @@
-def func(x,y):
-    print(x+y)
+{
+    'key1':'value1',
+    'key2': 'value2'
+}
