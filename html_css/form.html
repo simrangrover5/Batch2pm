@@ -1,14 +1,45 @@
 <html>
-    <head></head>
+    <head>
+        <style>
+            label{
+                color: black;
+                font-size: 40px;
+                font-style: italic;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+            body{
+                background: linear-gradient(#4CCCDE ,#72898D );
+            }
+            div{
+                border: 2px solid red;
+                height: 70%;
+                width: 50%;
+                margin-left: 20%;
+                margin-top: 10%;
+            }
+            form{
+                padding-left: 15%;
+            }
+            #sub{
+                height: 30px;
+                width: 20%;
+                margin-left: 50px;
+            }
+        </style>
+    </head>
     <body>
-        <form method="POST" action="#">
+        <div>
+        <form method="GET" action="one.html">
             <label>Enter your name</label><br>
-            <input type="text" name="uname"><br><br>
+            <input type="text" name="uname" placeholder="Enter your name" required><br><br>
             <label>Enter your email</label><br>
             <input type="email" name="email"><br><br>
             <label>Enter your password</label><br>
             <input type="password" name="pswd"><br><br>
-            <input type="submit" value="SUBMIT">
+            <input type="radio" name="gender" value="male">MALE
+            <input type="radio" name="gender" value="female">FEMALE<br><br>
+            <input type="submit" value="SUBMIT" id="sub">
         </form>
+        </div>
     </body>
 </html>
