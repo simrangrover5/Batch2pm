@@ -1,0 +1,23 @@
+li{
+    display: inline;
+    padding-right:100px;
+    
+}
+body{
+    background: linear-gradient(to right,#72898D ,#79D5E5 );
+}
+a{
+    color: black;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-style: italic;
+    text-decoration: none;
+}
+div{
+
+    background-color: darkslategrey;
+    width: 100%;
+}
+a:hover{
+    background-color: white;
+}
