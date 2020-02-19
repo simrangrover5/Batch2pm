@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <style>
+            body{
+                background: linear-gradient(#79D5E5 ,#63777B ,#232E30 );
+            }
+            h1{
+                color: black;
+                font-style: italic;
+            }
+            p{
+                font-style: italic;
+                font-size: 40px;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h1>This is heading tag</h1>
+        <p>This is paragraph tag where you can write the paragraph</p>
+        <h1>Welcome {{ name }}</h1>
+        {% if data %}
+        {% for key,value in data.items() %}
+        <h1>{{ key }} = {{ value }}</h1>
+        {% endfor %}
+        {% endif %}
+        
+    </body>
+</html>

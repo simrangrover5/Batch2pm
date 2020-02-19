@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <style>
+            .main{
+                margin-top: 10%;
+                margin-left: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        {% include "nav.html" %}
+        {% block head %}
+        {% endblock %}
+        <div class="main">
+        <form method="POST" action="/afterlogin/">
+            <label>EMAIL    : </label>
+            <input type="email" name="email"><br><br>
+            <label>PASSWORD : </label>
+            <input type="password" name="pswd"><br><br>
+            <input type="submit" value="LOGIN">
+            </form>
+            <a href="/signup/">NOT A USER?</a>
+        </div>
+    </body>
+</html>
