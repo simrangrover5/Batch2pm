@@ -1,0 +1,12 @@
+body{
+    background: linear-gradient(#79D5E5 ,#63777B ,#232E30 );
+}
+h1{
+    color: black;
+    font-style: italic;
+}
+p{
+    font-style: italic;
+    font-size: 40px;
+    
+}

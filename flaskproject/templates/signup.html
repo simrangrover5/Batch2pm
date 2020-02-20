@@ -11,16 +11,21 @@
         {% include "nav.html" %}
         {% block head %}
         {% endblock %}
-        <h1 style="color: red;">{{error}}</h1>
         <div class="main">
-        <form method="POST" action="/afterlogin/">
+            <h1 style="color: red;">{{ error }}</h1>
+        <form method="POST" action="/aftersignup/">
+            <label>USERNAME  : </label>
+            <input type="text" name="uname" required><br><br>
             <label>EMAIL    : </label>
             <input type="email" name="email"><br><br>
             <label>PASSWORD : </label>
             <input type="password" name="pswd"><br><br>
-            <input type="submit" value="LOGIN">
+            <label>GENDER : </label>
+            <input type="radio" name="gender" value="male">MALE 
+            <input type="radio" name="gender" value="female">FEMALE<br><br>
+            <input type="submit" value="SIGNUP">
             </form>
-            <a href="/signup/">NOT A USER?</a>
+            <a href="/login/">ALREADY A USER?</a>
         </div>
     </body>
 </html>
