@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <style>
+            #img{
+                float: left;
+                padding-top: -5%;
+                padding-left: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        {% include "index.html" %}
+        {% block head %}
+        {% endblock %}
+        <h1>Description : {{ weather.description }}</h1>
+        <p>Temperature : {{ weather.temp }}</p>
+        <p>Humidity : {{ weather.humidity }}</p>
+        <div id="img">
+        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" height="70px" width="70px">
+        <div>
+        <h4>Country Code : {{ weather.country }}</h4>
+    </body>
+</html>

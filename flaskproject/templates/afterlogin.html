@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <style>
+            .main{
+                margin-top: 10%;
+                margin-left: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        {% include "index.html" %}
+        {% block head %}
+        {% endblock %}
+        <h1 style="color: red;">{{error}}</h1>
+        <div class="main">
+        <form method="POST" action="/afterlogin1/">
+            <label>CITY    : </label>
+            <input type="text" name="city"><br><br>
+            <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+    </body>
+</html>

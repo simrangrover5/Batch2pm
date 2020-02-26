@@ -1,14 +1,12 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,make_response,session
 import pymysql as sql
 from flask_mail import Mail,Message
 import os
-
-
-
+import requests,json 
 
 
 app = Flask(__name__)
-
+app.secret_key = "ojfijoifieoijpijpowpinon123445nojpifjpijpejpoppijpj"
 
 mail=Mail(app)
 
@@ -44,6 +42,8 @@ def name(var,m1,m2,m3):
 
 @app.route('/login/')
 def login():
+    if request.cookies.get('login'):
+        return render_template("afterlogin.html")
     return render_template("login.html")
 
 
@@ -62,7 +62,13 @@ def afterlogin():
         if data:
             #print(data)
             if password == data[2]:
-                return render_template("one.html")
+                #resp = make_response(render_template("afterlogin.html"))
+                #resp.set_cookie('email',email)
+                #resp.set_cookie('login','true')
+                #return resp
+                session['email'] = email
+                session['login'] = "true"
+                return render_template("afterlogin.html")
             else:
                 error = "Invalid password"
                 return render_template("login.html",error=error)
@@ -107,5 +113,39 @@ def contact():
     m = Message(subject="Mail from flask app",recipients=["simrangrover5@gmail.com"],body=body,sender="simrangrover5@gmail.com")
     mail.send(m)
     return "SUCCESS"
+
+@app.route("/afterlogin1/",methods=['POST'])
+def afterlogin1():
+    city = request.form.get('city')
+    api_key = "4d9de1f21d7daf67973b53bbaf288521"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    data = requests.get(url)
+    if data.status_code == 200:
+        if "json" in data.headers['Content-Type']:
+            data = data.json()
+            weather = {
+            'description' : data['weather'][0]['description'].title(),
+            'temp' : round(data['main']['temp'] - 273,2),
+            'humidity' : data['main']['humidity'],
+            'country' : data['sys']['country'],
+            'icon' : data['weather'][0]['icon']
+            }
+            return render_template("weather.html",weather=weather)
+            
+        else:
+            print("No json data.....")
+
+    else:
+        print("You have some wrong url............")
+
+@app.route("/logout/")
+def logout():
+    #resp = make_response(render_template("login.html"))
+    #resp.delete_cookie('email')
+    #resp.delete_cookie('login')
+    #return resp
+    del session['email']
+    del session['login']
+    return render_template("login.html")
 
 app.run(host="localhost",port=80,debug=True)
