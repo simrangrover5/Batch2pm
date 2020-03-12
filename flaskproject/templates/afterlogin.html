@@ -15,9 +15,14 @@
         <div class="main">
         <form method="POST" action="/afterlogin1/">
             <label>CITY    : </label>
-            <input type="text" name="city"><br><br>
-            <input type="submit" value="SUBMIT">
+            <input type="text" name="city" id="city"><br><br>
+            <input type="submit" value="SUBMIT" onclick="setcookie()">
             </form>
         </div>
     </body>
+    <script>
+        function setcookie(){
+            document.cookie = "name = "+document.getElementsById("city").value+";"+ "path=/afterlogin1/";
+        }
+    </script>
 </html>

@@ -3,6 +3,7 @@ import pymysql as sql
 from flask_mail import Mail,Message
 import os
 import requests,json 
+from flask import jsonify
 
 
 app = Flask(__name__)
@@ -47,7 +48,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/afterlogin/",methods=['POST'])
+@app.route("/afterlogin/",methods=['GET','POST'])
 def afterlogin():
     email = request.form.get('email')
     password = request.form['pswd']
@@ -148,4 +149,24 @@ def logout():
     del session['login']
     return render_template("login.html")
 
+@app.route("/movie/rating=<var>")
+def show_api(var):
+    rating = float(var)
+    try:
+        db = sql.connect(host="localhost",port=3306,user="root",password="",database="batch2pm")
+        c = db.cursor()
+    except Exception as e:
+        return e
+    else:
+        cmd = f"select title,genre from movie where rating >= {rating}"
+        c.execute(cmd)
+        data = c.fetchall()
+        response = []
+        for i in data:
+            d = {
+                'title' : i[0],
+                'genre' : i[1]
+            }
+            response.append(d)
+        return jsonify(response)
 app.run(host="localhost",port=80,debug=True)
